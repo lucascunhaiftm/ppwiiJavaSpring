@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import br.edu.iftm.meuAppSpringJava.model.Product;
 import br.edu.iftm.meuAppSpringJava.service.ProductService;
 
 @Controller
@@ -17,6 +20,18 @@ public class ProductController {
     public String index(Model model) {
         model.addAttribute("productsList", productService.getAllProducts());
         return "product/index";
+    }
+
+    @GetMapping("/product/create")
+    public String create(Model model) {
+        model.addAttribute("product", new Product());
+        return "product/create";
+    }
+
+    @PostMapping("/product/save")
+    public String postMethodName(@ModelAttribute("product") Product product) {
+        productService.saveProduct(product);
+        return "redirect:/product";
     }
 
 }
