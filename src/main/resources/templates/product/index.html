@@ -23,6 +23,7 @@
             <th scope="col">Preço</th>
             <th scope="col">Estoque</th>
             <th scope="col">Excluir</th>
+            <th scope="col">Editar</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,9 @@
             <td scope="row" th:text="${product.stock}"></td>
             <td>
               <a th:href="@{/product/delete/{id}(id=${product.id})}">Deletar</a>
+            </td>
+            <td>
+              <a th:href="@{/product/edit/{id}(id=${product.id})}">Editar</a>
             </td>
           </tr>
         </tbody>

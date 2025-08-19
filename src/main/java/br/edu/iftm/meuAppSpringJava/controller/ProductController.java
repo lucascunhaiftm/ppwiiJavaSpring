@@ -41,4 +41,11 @@ public class ProductController {
         return "redirect:/product";
     }
 
+    @GetMapping("/product/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "product/edit";
+    }
+
 }
